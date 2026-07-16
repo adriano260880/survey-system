@@ -1,0 +1,50 @@
+@startuml
+title Query Restaurant Rating
+
+actor User
+
+participant Query
+
+database Redis
+
+database MongoDB
+
+User -> Query
+
+GET /restaurants/100
+
+Query -> Redis
+
+GET rating:100
+
+alt Cache Hit
+
+Redis --> Query
+
+Rating
+
+else Cache Miss
+
+Redis --> Query
+
+NULL
+
+Query -> MongoDB
+
+Find restaurant_rating
+
+MongoDB --> Query
+
+Rating
+
+Query -> Redis
+
+SET rating:100
+
+end
+
+Query --> User
+
+RestaurantRatingResponse
+
+@enduml

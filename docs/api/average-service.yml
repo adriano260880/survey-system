@@ -1,0 +1,22 @@
+paths:
+
+  /aggregation/run:
+
+    post:
+
+      summary: Execute aggregation manually
+
+      description: Used only for local development.
+
+      tags:
+        - Aggregation
+
+      responses:
+
+        "200":
+
+          description: Aggregation finished successfully
+
+        "500":
+
+          $ref: '#/components/responses/InternalError'

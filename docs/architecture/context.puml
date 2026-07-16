@@ -1,0 +1,30 @@
+@startuml
+!theme plain
+
+title Survey System - Context Diagram
+
+actor User
+
+rectangle "Survey System" {
+
+    component "Review Service" as Review
+    component "Query Service" as Query
+    component "Average Service" as Average
+
+}
+
+database MongoDB
+database Redis
+
+User --> Review : POST /reviews
+User --> Query : GET /restaurants/{id}
+User --> Query : GET /restaurants/{id}/reviews
+
+Review --> MongoDB
+
+Average --> MongoDB
+
+Query --> MongoDB
+Query --> Redis
+
+@enduml

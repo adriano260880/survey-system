@@ -1,0 +1,333 @@
+openapi: 3.0.3
+
+info:
+  title: Survey Query Service API
+  version: 1.0.0
+  description: |
+    Query Service responsável pelas consultas do Survey System.
+
+    Este serviço implementa o Read Model do CQRS.
+
+    Funcionalidades:
+
+      • Consulta da média consolidada dos restaurantes
+      • Consulta paginada das avaliações
+      • Cache Redis para médias dos restaurantes
+
+servers:
+  - url: http://localhost:8082
+    description: Local
+
+tags:
+  - name: Ratings
+    description: Restaurant consolidated ratings
+
+  - name: Reviews
+    description: Restaurant reviews
+
+paths:
+
+  /restaurants/{restaurantId}:
+
+    get:
+
+      tags:
+        - Ratings
+
+      summary: Get restaurant rating
+
+      description: |
+        Returns the consolidated restaurant rating.
+
+        Data is served from Redis when available.
+        Otherwise it is loaded from MongoDB and cached.
+
+      operationId: findRestaurantRating
+
+      parameters:
+
+        - name: restaurantId
+          in: path
+          required: true
+          description: Restaurant identifier
+          schema:
+            type: integer
+            format: int64
+            example: 100
+
+      responses:
+
+        "200":
+
+          description: Restaurant rating found
+
+          content:
+
+            application/json:
+
+              schema:
+                $ref: "#/components/schemas/RestaurantRatingResponse"
+
+              examples:
+
+                Success:
+
+                  value:
+
+                    restaurantId: 100
+                    average: 4.40
+                    totalReviews: 523
+                    lastProcessedDate: "2026-07-08"
+
+        "404":
+
+          $ref: "#/components/responses/NotFound"
+
+        "500":
+
+          $ref: "#/components/responses/InternalError"
+
+  /restaurants/{restaurantId}/reviews:
+
+    get:
+
+      tags:
+        - Reviews
+
+      summary: List restaurant reviews
+
+      description: |
+        Returns restaurant reviews ordered by newest first.
+
+      operationId: listRestaurantReviews
+
+      parameters:
+
+        - name: restaurantId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+            example: 100
+
+        - name: page
+          in: query
+          required: false
+          description: Page number
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+
+        - name: size
+          in: query
+          required: false
+          description: Page size
+          schema:
+            type: integer
+            default: 20
+            minimum: 1
+            maximum: 100
+
+      responses:
+
+        "200":
+
+          description: Reviews returned successfully
+
+          content:
+
+            application/json:
+
+              schema:
+
+                $ref: "#/components/schemas/PageReviewResponse"
+
+              examples:
+
+                Success:
+
+                  value:
+
+                    content:
+
+                      - orderId: 101
+                        userId: 1
+                        rating: 5
+                        createdAt: "2026-07-15T16:31:13Z"
+
+                      - orderId: 20
+                        userId: 500
+                        rating: 4
+                        createdAt: "2026-07-14T10:20:00Z"
+
+                    totalElements: 52
+                    totalPages: 3
+                    size: 20
+                    number: 0
+                    first: true
+                    last: false
+                    empty: false
+
+        "500":
+
+          $ref: "#/components/responses/InternalError"
+
+components:
+
+  #########################################
+  # Schemas
+  #########################################
+
+  schemas:
+
+    RestaurantRatingResponse:
+
+      type: object
+
+      properties:
+
+        restaurantId:
+          type: integer
+          format: int64
+          example: 100
+
+        average:
+          type: number
+          format: double
+          example: 4.40
+
+        totalReviews:
+          type: integer
+          example: 523
+
+        lastProcessedDate:
+          type: string
+          format: date
+          example: "2026-07-08"
+
+    ReviewResponse:
+
+      type: object
+
+      properties:
+
+        orderId:
+          type: integer
+          format: int64
+          example: 101
+
+        userId:
+          type: integer
+          format: int64
+          example: 10
+
+        rating:
+          type: integer
+          minimum: 1
+          maximum: 5
+          example: 5
+
+        createdAt:
+          type: string
+          format: date-time
+          example: "2026-07-15T16:31:13Z"
+
+    PageReviewResponse:
+
+      type: object
+
+      properties:
+
+        content:
+
+          type: array
+
+          items:
+
+            $ref: "#/components/schemas/ReviewResponse"
+
+        totalElements:
+          type: integer
+          example: 52
+
+        totalPages:
+          type: integer
+          example: 3
+
+        size:
+          type: integer
+          example: 20
+
+        number:
+          type: integer
+          example: 0
+
+        first:
+          type: boolean
+          example: true
+
+        last:
+          type: boolean
+          example: false
+
+        empty:
+          type: boolean
+          example: false
+
+    ProblemDetail:
+
+      type: object
+
+      properties:
+
+        type:
+          type: string
+          example: "about:blank"
+
+        title:
+          type: string
+          example: "Not Found"
+
+        status:
+          type: integer
+          example: 404
+
+        detail:
+          type: string
+          example: "Restaurant not found"
+
+        instance:
+          type: string
+          example: "/restaurants/100"
+
+  #########################################
+  # Responses
+  #########################################
+
+  responses:
+
+    NotFound:
+
+      description: Resource not found
+
+      content:
+
+        application/problem+json:
+
+          schema:
+
+            $ref: "#/components/schemas/ProblemDetail"
+
+    InternalError:
+
+      description: Unexpected server error
+
+      content:
+
+        application/problem+json:
+
+          schema:
+
+            $ref: "#/components/schemas/ProblemDetail"

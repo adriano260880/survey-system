@@ -1,0 +1,34 @@
+@startuml
+title Daily Aggregation
+
+participant Quartz
+
+participant AverageService
+
+database MongoDB
+
+Quartz -> AverageService
+
+Execute Job
+
+AverageService -> MongoDB
+
+Find pending reviews
+
+MongoDB --> AverageService
+
+Reviews
+
+AverageService -> MongoDB
+
+Update restaurant_rating
+
+AverageService -> MongoDB
+
+Mark reviews processed
+
+AverageService --> Quartz
+
+Finished
+
+@enduml

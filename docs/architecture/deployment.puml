@@ -1,0 +1,34 @@
+@startuml
+!theme plain
+
+title Survey System - Deployment Diagram
+
+node "Docker Compose" {
+
+    node "review-service" {
+        component Review
+    }
+
+    node "average-service" {
+        component Average
+    }
+
+    node "query-service" {
+        component Query
+    }
+
+    database MongoDB
+
+    database Redis
+
+}
+
+Review --> MongoDB
+
+Average --> MongoDB
+
+Query --> MongoDB
+
+Query --> Redis
+
+@enduml

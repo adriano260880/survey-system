@@ -1,0 +1,30 @@
+@startuml
+!theme plain
+
+title Survey System - Container Diagram
+
+package "Survey System" {
+
+component "Review Service\nSpring Boot" as Review
+
+component "Average Service\nSpring Boot + Quartz" as Average
+
+component "Query Service\nSpring Boot" as Query
+
+database MongoDB
+
+database Redis
+
+}
+
+Review --> MongoDB : Reviews
+
+Average --> MongoDB : Aggregate
+
+Query --> Redis : Cache Rating
+
+Query --> MongoDB : Rating Collection
+
+Query --> MongoDB : Reviews Collection
+
+@enduml

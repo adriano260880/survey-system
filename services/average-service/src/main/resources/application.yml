@@ -1,0 +1,75 @@
+spring:
+  application:
+    name: average-service
+
+  profiles:
+    active: local
+
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/survey
+
+server:
+  port: 8081
+
+management:
+
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - info
+          - prometheus
+
+  endpoint:
+    health:
+      show-details: always
+
+  metrics:
+
+    tags:
+      application: ${spring.application.name}
+      environment: ${spring.profiles.active}
+
+    distribution:
+
+      percentiles-histogram:
+        http.server.requests: true
+
+      percentiles:
+        http.server.requests:
+          - 0.50
+          - 0.90
+          - 0.95
+          - 0.99
+
+      slo:
+        http.server.requests:
+          - 50ms
+          - 100ms
+          - 250ms
+          - 500ms
+          - 1s
+
+info:
+  app:
+    name: ${spring.application.name}
+    description: Average Service
+    version: 1.0.0
+
+logging:
+  level:
+    root: INFO
+    br.com.adriano.survey.average: DEBUG
+
+aggregation:
+  scheduler:
+    enabled: true
+    cron: "0 5 0 * * *"
+
+  processing:
+
+    batch-size: 1000
+
+    reprocess-days: 0

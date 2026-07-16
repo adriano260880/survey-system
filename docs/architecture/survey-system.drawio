@@ -1,0 +1,64 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="2f1ZTmUzGuXU46PmrzbH">
+    <mxGraphModel dx="1099" dy="479" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="kdYnzH21FbBvDcz6Ua9g-6" edge="1" parent="1" source="kdYnzH21FbBvDcz6Ua9g-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="kdYnzH21FbBvDcz6Ua9g-2" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="440" y="220" />
+              <mxPoint x="290" y="220" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kdYnzH21FbBvDcz6Ua9g-8" edge="1" parent="1" source="kdYnzH21FbBvDcz6Ua9g-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="kdYnzH21FbBvDcz6Ua9g-7">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="440" y="220" />
+              <mxPoint x="600" y="220" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kdYnzH21FbBvDcz6Ua9g-9" connectable="0" parent="kdYnzH21FbBvDcz6Ua9g-8" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="REST APIs" vertex="1">
+          <mxGeometry relative="1" x="-0.8609" y="4" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kdYnzH21FbBvDcz6Ua9g-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Client" vertex="1">
+          <mxGeometry height="60" width="120" x="380" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="kdYnzH21FbBvDcz6Ua9g-2" parent="1" style="whiteSpace=wrap;html=1;rounded=1;" value="Review Sercice&lt;div&gt;Spring-boot&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="230" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="kdYnzH21FbBvDcz6Ua9g-12" edge="1" parent="1" source="kdYnzH21FbBvDcz6Ua9g-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="kdYnzH21FbBvDcz6Ua9g-11" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kdYnzH21FbBvDcz6Ua9g-7" parent="1" style="whiteSpace=wrap;html=1;rounded=1;" value="Query Sercice&lt;div&gt;Spring-boot&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="540" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="kdYnzH21FbBvDcz6Ua9g-11" parent="1" style="whiteSpace=wrap;html=1;rounded=1;" value="Redis" vertex="1">
+          <mxGeometry height="60" width="120" x="540" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="kdYnzH21FbBvDcz6Ua9g-20" edge="1" parent="1" source="kdYnzH21FbBvDcz6Ua9g-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="kdYnzH21FbBvDcz6Ua9g-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kdYnzH21FbBvDcz6Ua9g-15" parent="1" style="swimlane;whiteSpace=wrap;html=1;" value="MongoDB" vertex="1">
+          <mxGeometry height="110" width="450" x="210" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="kdYnzH21FbBvDcz6Ua9g-16" parent="kdYnzH21FbBvDcz6Ua9g-15" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="Reviews&lt;div&gt;Restaurant_rating&lt;/div&gt;&lt;div&gt;Aggregation_control&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="40" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="kdYnzH21FbBvDcz6Ua9g-17" edge="1" parent="1" source="kdYnzH21FbBvDcz6Ua9g-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.867;entryY=0.009;entryDx=0;entryDy=0;entryPerimeter=0;" target="kdYnzH21FbBvDcz6Ua9g-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kdYnzH21FbBvDcz6Ua9g-18" edge="1" parent="1" source="kdYnzH21FbBvDcz6Ua9g-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.178;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" target="kdYnzH21FbBvDcz6Ua9g-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kdYnzH21FbBvDcz6Ua9g-19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Average Service&lt;div&gt;Spring-boot&lt;/div&gt;&lt;div&gt;Quartz Scheduller&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="375" y="710" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

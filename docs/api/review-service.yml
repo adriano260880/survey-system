@@ -1,0 +1,53 @@
+paths:
+
+  /reviews:
+
+    post:
+
+      summary: Create Review
+
+      operationId: createReview
+
+      tags:
+        - Reviews
+
+      requestBody:
+
+        required: true
+
+        content:
+
+          application/json:
+
+            schema:
+
+              $ref: '#/components/schemas/CreateReviewRequest'
+
+            examples:
+
+              FiveStars:
+
+                value:
+
+                  orderId: 101
+                  restaurantId: 100
+                  userId: 10
+                  rating: 5
+
+      responses:
+
+        "201":
+
+          description: Review created successfully
+
+        "400":
+
+          $ref: '#/components/responses/BadRequest'
+
+        "409":
+
+          $ref: '#/components/responses/Conflict'
+
+        "500":
+
+          $ref: '#/components/responses/InternalError'
