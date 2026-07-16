@@ -195,7 +195,7 @@ A consolidação diária pode ser executada manualmente.
 
 ```bash
 curl --request POST \
---url http://localhost:8081/aggregation/run
+--url http://localhost:8081/internal/aggregation/run
 ```
 
 Resultado esperado:
