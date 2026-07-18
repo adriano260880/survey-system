@@ -5,10 +5,6 @@ spring:
   profiles:
     active: local
 
-  data:
-    mongodb:
-      uri: mongodb://localhost:27017/survey
-
 server:
   port: 8081
 
@@ -69,7 +65,5 @@ aggregation:
     cron: "0 5 0 * * *"
 
   processing:
-
     batch-size: 1000
-
     reprocess-days: 0

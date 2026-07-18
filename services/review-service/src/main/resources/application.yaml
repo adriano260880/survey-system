@@ -42,6 +42,11 @@ management:
           - 500ms
           - 1s
 
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
 info:
   app:
     name: ${spring.application.name}

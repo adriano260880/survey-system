@@ -9,8 +9,13 @@ services:
     ports:
       - "9090:9090"
 
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-storage:/prometheus
 
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -29,7 +34,14 @@ services:
       GF_SECURITY_ADMIN_PASSWORD: admin
 
     volumes:
+
       - grafana-storage:/var/lib/grafana
+
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+
+      - ./grafana/provisioning:/etc/grafana/provisioning
+
+      - ./grafana/plugins:/var/lib/grafana/plugins
 
     depends_on:
       - prometheus
@@ -37,3 +49,4 @@ services:
 volumes:
 
   grafana-storage:
+  prometheus-storage:
