@@ -182,7 +182,7 @@ Repita com diferentes pedidos.
 Também é possível utilizar:
 
 ```
-load-tests/k6/review-carga.js
+k6 run load-tests/k6/review-carga.js
 ```
 
 para gerar dezenas de avaliações automaticamente.

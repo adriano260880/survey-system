@@ -24,6 +24,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ReviewAggretationRespositoryImpl implements ReviewAggregationRepository {
 
+    private static final String REVIEWS = "reviews";
     private final MongoTemplate mongoTemplate;
 
     @Override
@@ -60,7 +61,7 @@ public class ReviewAggretationRespositoryImpl implements ReviewAggregationReposi
 
         return mongoTemplate.aggregate(
                 aggregation,
-                "reviews",
+                REVIEWS,
                 RestaurantAggregationDto.class
         ).getMappedResults();
     }
@@ -78,7 +79,8 @@ public class ReviewAggretationRespositoryImpl implements ReviewAggregationReposi
         ReviewProjection review =
                 mongoTemplate.findOne(
                         query,
-                        ReviewProjection.class
+                        ReviewProjection.class,
+                        REVIEWS
                 );
 
         if (review == null) {

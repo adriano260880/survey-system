@@ -6,8 +6,6 @@ import br.com.adriano.survey.query.service.RestaurantRatingQueryService;
 import br.com.adriano.survey.query.service.RestaurantReviewQueryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
