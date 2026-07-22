@@ -59,4 +59,4 @@ server:
 logging:
   level:
     root: INFO
-    br.com.adriano.survey.review: DEBUG
+    br.com.adriano.survey.review: INFO

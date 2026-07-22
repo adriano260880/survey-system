@@ -7,7 +7,7 @@ export const options = {
 
 export default function () {
 
-    const id = __ITER + 1;
+    const id = Date.now() + (__VU * 100000) + __ITER;
 
     const payload = JSON.stringify({
         orderId: id,
